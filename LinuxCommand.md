@@ -140,6 +140,17 @@
  - ifstat 1：查看网络IO，1秒一次，可以下载iftop
 18. 服务操作指令
  - service <服务名> <操作>：操作系统服务，在centos6以下可用，如：service iptables status 查看防火墙状态
- - systemctl <操作> <服务名>:操作系统服务，在centos7及以上可用，如：systemctl status firewalld
+ - systemctl <操作> <服务名>:操作系统服务，在centos7及以上可用，如：systemctl status firewalld.service
  - 操作：status(服务状态)、start(启动服务)、stop(停止服务)、restart(重启服务)、enable(设置开机启动，centos7)、disable(设置开机禁用,centos7)、reload(重新加载更新状态)
  - chkconfig iptables off:设置防火墙开机禁用，centos6
+19. 虚拟机创建
+ - Xshell链接其它主机上的虚拟机，可以在虚拟机上配置主机与虚拟机的端口映射，并打开主机对应端口。Xshell则连接主机上的对应端口，即可连接到对应虚拟机。
+ - 虚拟机配置网络，需要修改 /etc/sysconfig/network-stripts/ifcfg-nes233
+ - BOOTPROTO="static",ONBOOT="yes",IPADDR=192.168.x.x,GATEWAY=192.168.x.x,NETMASK=255.255.255.0,DNS=192.168.x.x
+ - 对应的GATEWAY在虚拟机NAT配置中存在，DNS由局域网对应网关，IPADDR则是在GATEWAY同一网段下
+20. JDK的安装
+ - 首先删除默认的openJDK
+ - 其次下载对应JDK安装包
+ - 然后解压到/usr/local/lib对应文件夹下 
+ - 最后修改/etc/profile文件，配置PATH，保存后source /etc/profile
+ - 使用java -version检查是否安装完成
