@@ -129,6 +129,7 @@
  - telnet
 17. linux状态查询
  - top：整机进程信息
+ - netstat:套接字连接情况 -a 列出所有，-t TCP的连接，-u UDP的链接，-n 禁用域名解析，加快查询，-l，正在监听的套接字 。一般使用 netstat -lantp|grep 端口号，查询对应端口号的套接字
  - vmstat：查看CPU(包含不限于)。vmstat -n 2 3 每2秒一次，一共3次
  - mpstat -P ALL 2：查看所有CPU核信息
  - pidstat -u 1 -p 进程编号：每个进程使用cpu的用量分解信息
@@ -154,3 +155,6 @@
  - 然后解压到/usr/local/lib对应文件夹下 
  - 最后修改/etc/profile文件，配置PATH，保存后source /etc/profile
  - 使用java -version检查是否安装完成
+21. 调试工具
+ - strace:跟踪一个命令的系统调用。strace -ff -o xxx.out <对应指令>，还可以-t输出对应时间戳。
+ - tcpdump:一个命令行下的抓包工具。-i 抓哪个网卡，-c 抓几个包，-X 将包中内容与协议头原原本本地显示 ，-nn 将域名显示为ip和端口号 ，-e 打印链路层的头信息，源mac与目的mac，-v或-vv输出更详尽的报文信息。 sudo tcpdump -i eth0 -e -nn -X -c 2 'port1111'
