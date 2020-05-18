@@ -31,7 +31,7 @@
  - $[运算式]：推荐使用
  - expr：\`expr 2 + 3\`。1、要用反引号括起来，2、参数与运算符之间有空格，3、乘号需要转义
 2. 判断
- - [ condition ]:内部为条件，且两边需要空格，当内部非空则返回true（0），否则为false（非0）
+ - \[ condition \]:内部为条件，且两边需要空格，当内部非空则返回true（0），否则为false（非0）
  - =：字符串是否相等
  - -lt：数字是否小于
  - -le：数字是否小于等于
@@ -50,7 +50,7 @@
  - if：使用“if”开头，“fi”结尾，等同if语句。“then”，为true时执行的语句。“elif”，等同于“elseif”，“else”，等同与java的else。
  - case：类似switch，以“case $变量名 in”开头，“esac”结尾，中间“ 值) 指令 ;;”作为case和break，“ *) 指令 ;;”作为default。case的值也可以是范围的条件，比如[6-9],注意没有空格。没有case穿透
  - for：有两种方式。1、“for i in $变量名”，等同于foreach。2、“for((i=0;i<=10;i++))”，等同于for循环,注意是双层括号。“do”、“done”，等同于“{”、“}”
- - while:“while [ condition ]”,“do”、“done”，等同于“{”、“}”。
+ - while:“while \[ condition \]”,“do”、“done”，等同于“{”、“}”。
 ## 读取控制台输入
 1. read:使用“read <选项> <参数>”。
  - 选项： -p 输出提示信息 -t 要求在多少秒内从控制台输入，否则就跳过
