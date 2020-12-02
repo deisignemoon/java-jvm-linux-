@@ -148,6 +148,7 @@
  - iostat -xdk 2 3：磁盘IO性能评估，每2秒一次，一共3次，可以下载iotop
  - pidstat -d 采样间隔秒数 -p 进程号：查看额外
  - ifstat 1：查看网络IO，1秒一次，可以下载iftop
+ - sar: -h 帮助；-d 磁盘；-b io;-r 内存；-u CPU；-n DEV 网卡；查看机器状态
 18. 服务操作指令
  - service <服务名> <操作>：操作系统服务，在centos6以下可用，如：service iptables status 查看防火墙状态
  - systemctl <操作> <服务名>:操作系统服务，在centos7及以上可用，如：systemctl status firewalld.service
