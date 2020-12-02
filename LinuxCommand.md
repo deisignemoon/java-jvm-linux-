@@ -74,7 +74,7 @@
  - systemctl set-default multi-user.target：将默认运行级别设置为mulit-user；
  - systemctl isolate multi-user.target：不重启系统的情况下，将运行级别切换至mulit-user；
  - systemctl isolate graphical.target：不重启系统的情况下，将运行级别切换至图形模式。
- - runlvel：返回结果中，第一个数为之前运行级别，后一个数为当前运行级别；
+ - runlevel：返回结果中，第一个数为之前运行级别，后一个数为当前运行级别；
  - init <0-6>：根据启动级别不同，进入不同模式
 7. 帮助
  - man <指令>
@@ -180,4 +180,7 @@
  - 创建一个新窗格：快捷键+%
  - 窗格间移动：快捷键+方向键
  - exit：离开当前窗格，窗口，会话
- - 
+23. 端口配置
+ - /etc/sysconfig/iptables 编辑文件
+ - 重启服务：/etc/init.d/iptables restart
+ - 查看端口是否开放：/sbin/iptables -L -n
