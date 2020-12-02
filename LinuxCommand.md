@@ -133,7 +133,8 @@
  - curl -T <文件路径> -u <用户名>:<密码> ftp://<FTP地址>/<ftp路径>/ 上传文件
  - curl <url>：访问该地址，获得html
  - curl -o <文件名> <url> ：将html保存
- - nc
+ - nc：nc -zvw3 ip port 查看tcp端口是否开启。 nc -l port ,监听某端口。 nc ip port 连接某ip的端口
+ - netstat -anpl|grep port 查看端口占用
  - telnet
 17. linux状态查询
  - top：整机进程信息
