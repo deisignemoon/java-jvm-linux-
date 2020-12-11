@@ -2,7 +2,7 @@
 1. 本地仓库初始化：git init 或者 git clone <远程仓库地址>也会初始化本地仓库
 2. 设置签名：
  - 项目级别/仓库级别：git config user.name <用户名> | git config user.email <邮箱地址>
- - 系统用户级别：git --global config user.name <用户名> | git --global config user.email <邮箱地址>
+ - 系统用户级别：git config --global user.name <用户名> | git config --global user.email <邮箱地址>
  - 优先级：采取就近原则，有项目级使用项目级，没有采用系统级，都没有则不允许
 3. 基本操作
  - 状态查看：git status
