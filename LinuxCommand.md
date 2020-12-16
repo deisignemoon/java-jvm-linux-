@@ -114,8 +114,23 @@
  - [service和systemctl](https://www.cnblogs.com/shijingjing07/p/9301590.html)
  - [systemctl](https://blog.csdn.net/liuchonghua/article/details/81743606)
 14. 网络管理
- - netstat -anp:查看所有网络服务
- - ifstat
+ - ifconfig或ip:网络配置与状态，ifconfig 属于 net-tools 软件包，ip 属于 iproute2 软件包
+ - 虽然这两个命令输出的格式不尽相同，但是输出的内容基本相同，比如都包含了 IP 地址、子网掩码、MAC 地址、网关地址、MTU 大小、网口的状态以及网路包收发的统计信息，下面就来说说这些信息，它们都与网络性能有一定的关系。
+
+ - 第一，网口的连接状态标志。其实也就是表示对应的网口是否连接到交换机或路由器等设备，如果 ifconfig 输出中看到有 RUNNING，或者 ip 输出中有 LOWER_UP，则说明物理网路是连通的，如果看不到，则表示网口没有接网线。
+
+ - 第二，MTU 大小。默认值是 1500 字节，其作用主要是限制网络包的大小，如果 IP 层有一个数据报要传，而且数据帧的长度比链路层的 MTU 还大，那么 IP 层就需要进行分片，即把数据报分成干片，这样每一片就都小于 MTU。事实上，每个网络的链路层 MTU 可能会不一样，所以你可能需要调大或者调小 MTU 的数值。
+
+ - 第三，网口的 IP 地址、子网掩码、MAC 地址、网关地址。这些信息必须要配置正确，网络功能才能正常工作。
+
+ - 第四，网路包收发的统计信息。通常有网络收发的字节数、包数、错误数以及丢包情况的信息，如果 TX（发送） 和 RX（接收） 部分中 errors、dropped、overruns、carrier 以及 collisions 等指标不为 0 时，则说明网络发送或者接收出问题了，这些出错统计信息的指标意义如下：
+
+ - errors 表示发生错误的数据包数，比如校验错误、帧同步错误等；
+ - dropped 表示丢弃的数据包数，即数据包已经收到了 Ring Buffer（这个缓冲区是在内核内存中，更具体一点是在网卡驱动程序里），但因为系统内存不足等原因而发生的丢包；
+ - overruns 表示超限数据包数，即网络接收/发送速度过快，导致 Ring Buffer 中的数据包来不及处理，而导致的丢包，因为过多的数据包挤压在 Ring Buffer，这样 Ring Buffer 很容易就溢出了；
+ - carrier 表示发生 carrirer 错误的数据包数，比如双工模式不匹配、物理电缆出现问题等；
+ - collisions 表示冲突、碰撞数据包数；
+ - ifconfig 和 ip 命令只显示的是网口的配置以及收发数据包的统计信息，而看不到协议栈里的信息，那接下来就来看看如何查看协议栈里的信息。
 15. rpm与yum
  - rpm：rpm安装操作
  - rpm -q <应用>：查看某应用是否安装
@@ -138,8 +153,9 @@
  - telnet
 17. linux状态查询
  - top：整机进程信息
- - netstat:套接字连接情况 -a 列出所有，-t TCP的连接，-u UDP的链接，-n 禁用域名解析，加快查询，-l，正在监听的套接字 。一般使用 netstat -lantp|grep 端口号，查询对应端口号的套接字
- - vmstat：查看CPU(包含不限于)。vmstat -n 2 3 每2秒一次，一共3次
+ - netstat:套接字连接情况 -a 列出所有，-t TCP的连接，-u UDP的链接，-n 禁用域名解析，加快查询，-l，正在监听的套接字, -s 协议栈统计信息 。一般使用 netstat -lantp|grep 端口号，查询对应端口号的套接字
+ - ss: netstat的性能不太好，可以使用ss，获得简略信息
+ - vmstat：查看CPU(包含不限于)。vmstat -n 2 3 每2秒一次，一共3次 
  - mpstat -P ALL 2：查看所有CPU核信息
  - pidstat -u 1 -p 进程编号：每个进程使用cpu的用量分解信息
  - free：应用程序可用内存数 -m使用mb计数
@@ -148,7 +164,9 @@
  - iostat -xdk 2 3：磁盘IO性能评估，每2秒一次，一共3次，可以下载iotop
  - pidstat -d 采样间隔秒数 -p 进程号：查看额外
  - ifstat 1：查看网络IO，1秒一次，可以下载iftop
- - sar: -h 帮助；-d 磁盘；-b io;-r 内存；-u CPU；-n DEV 网卡；查看机器状态
+ - sar: -h 帮助；-d 磁盘；-b io;-r 内存；-u CPU；-n DEV 网卡（rxpck/s 和 txpck/s 分别是接收和发送的 PPS，单位为包 / 秒。rxkB/s 和 txkB/s 分别是接收和发送的吞吐率，单位是 KB/ 秒。rxcmp/s 和 txcmp/s 分别是接收和发送的压缩数据包数，单位是包 / 秒。）；查看机器状态
+ - ethtool：ethtool eth0 | grep Speed 不过注意这里小写字母 b ，表示比特而不是字节。我们通常提到的千兆网卡、万兆网卡等，单位也都是比特（bit）
+ - ping ：它是基于 ICMP 协议的，工作在网络层。 icmp_seq（ICMP 序列号）、TTL（生存时间，或者跳数）以及 time （往返延时），而且最后会汇总本次测试的情况，如果网络没有丢包，packet loss 的百分比就是 0。ping 不通服务器并不代表 HTTP 请求也不通，因为有的服务器的防火墙是会禁用 ICMP 协议的。
 18. 服务操作指令
  - service <服务名> <操作>：操作系统服务，在centos6以下可用，如：service iptables status 查看防火墙状态
  - systemctl <操作> <服务名>:操作系统服务，在centos7及以上可用，如：systemctl status firewalld.service
