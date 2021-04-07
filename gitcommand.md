@@ -9,6 +9,7 @@
  - 添加:git add <文件名> ，使用\.表示所有文件
  - 提交：git commit -m "提交信息" -a <文件名>
  - 查看历史记录：git log 。空格向下翻页，b向上翻页，q退出。git reflog
+ - 查看提交内容：git show <版本号> 
  - 移动版本号：git reset --hard <版本号> 。git reset --hard HEAD^ 一个^表示向下移动一个版本。git reset --hard HEAD~n 移动n个版本
  - 三个版本移动参数：--soft 只移动本地库的指针。 --mixed 移动本地库指针，并重置暂存区。 --hard 移动本地库指针，并重置暂存区和工作区。
  - 比较文件差异：git diff <文件名> 比较工作区与暂存区的差异。git diff <本地库版本号> <文件名> 比较工作区与本地库文件差异。不加文件名，比较多个文件的差异
