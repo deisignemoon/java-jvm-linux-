@@ -37,6 +37,7 @@
  - 撤销操作：切换到一般模式下 u
  - 移动到某行：shift+g（命令模式下）
  - 移动到行头或行尾，使用键盘的HOME或END，或者在命令模式下^或$
+ - 清空文件内容：将空数据覆盖到文件，如: >  xxx.txt或echo "" >xxx.txt 或 : > xxx.txt 或 cat /dev/null > xxx.txt 
 3. 开关机操作
  - shoutdown -h now:立即关机
  - shutdown -h 1：一分钟后关机
@@ -162,6 +163,7 @@
  - free：应用程序可用内存数 -m使用mb计数
  - pidstat -p 进程号 -r 采样间隔秒数：查看额外
  - df -h：查看磁盘剩余空闲数
+ - du -ash <目录> :查看目标目录下文件大小
  - iostat -xdk 2 3：磁盘IO性能评估，每2秒一次，一共3次，可以下载iotop
  - pidstat -d 采样间隔秒数 -p 进程号：查看额外
  - ifstat 1：查看网络IO，1秒一次，可以下载iftop
