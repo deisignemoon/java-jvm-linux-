@@ -188,7 +188,7 @@
  - 使用java -version检查是否安装完成
 21. 调试工具
  - strace:跟踪一个命令的系统调用。strace -ff -o xxx.out <对应指令>，还可以-t输出对应时间戳。
- - tcpdump:一个命令行下的抓包工具。-i 抓哪个网卡，-c 抓几个包，-X 将包中内容与协议头原原本本地显示 ，-nn 将域名显示为ip和端口号 ，-e 打印链路层的头信息，源mac与目的mac，-v或-vv输出更详尽的报文信息。 sudo tcpdump -i eth0 -e -nn -X -c 2 'port1111'
+ - tcpdump:一个命令行下的抓包工具。-i 抓哪个网卡，-c 抓几个包，-X 将包中内容与协议头原原本本地显示 ，-nn 将域名显示为ip和端口号 ，-e 打印链路层的头信息，源mac与目的mac，-v或-vv输出更详尽的报文信息。 sudo tcpdump -i eth0 -e -nn -X -c 2 port 1111
 22. 使用tmux
  - tmux有会话（Session）、窗口（Window）、窗格（Pane）
  - tmux ls：查看当前存在的会话
