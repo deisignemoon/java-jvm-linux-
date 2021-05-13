@@ -207,3 +207,9 @@
  - /etc/sysconfig/iptables 编辑文件
  - 重启服务：/etc/init.d/iptables restart
  - 查看端口是否开放：/sbin/iptables -L -n
+24. 挂载
+ - mount：挂载设备到目录
+ - mount -t ntfs-3g /dev/sdxY 目录 。挂载NTFS分区
+ - /etc/fstab :自动挂载配置文件
+
+
