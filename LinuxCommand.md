@@ -212,6 +212,6 @@
  - mount -t ntfs-3g /dev/sdxY 目录 。挂载NTFS分区
  - /etc/fstab :自动挂载配置文件
 100. 其它
- - 数据恢复：可以使用testdisk
+ - 数据恢复：可以使用testdisk[操作手册](https://www.cgsecurity.org/wiki/Testdisk_%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97)
 
 
