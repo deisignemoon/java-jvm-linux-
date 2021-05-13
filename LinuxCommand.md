@@ -211,5 +211,7 @@
  - mount：挂载设备到目录
  - mount -t ntfs-3g /dev/sdxY 目录 。挂载NTFS分区
  - /etc/fstab :自动挂载配置文件
+100. 其它
+ - 数据恢复：可以使用testdisk
 
 
