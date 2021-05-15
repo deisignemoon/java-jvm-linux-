@@ -23,29 +23,29 @@
  -  od：以二进制的方式读取文件内容，-t  【type】输出类型type可为a(默认)、c(ACSll码)、d(十进制)、f(浮点)、o(八进制)、x(十六进制)
  -  xxd:二进制查看文件（可以看到原文件内容）
  - dd:if=文件名：输入文件名，默认为标准输入。即指定源文件。
-of=文件名：输出文件名，默认为标准输出。即指定目的文件。
-ibs=bytes：一次读入bytes个字节，即指定一个块大小为bytes个字节。
-obs=bytes：一次输出bytes个字节，即指定一个块大小为bytes个字节。
-bs=bytes：同时设置读入/输出的块大小为bytes个字节。
-cbs=bytes：一次转换bytes个字节，即指定转换缓冲区大小。
-skip=blocks：从输入文件开头跳过blocks个块后再开始复制。
-seek=blocks：从输出文件开头跳过blocks个块后再开始复制。
-count=blocks：仅拷贝blocks个块，块大小等于ibs指定的字节数。
-conv=<关键字>，关键字可以有以下11种：
-conversion：用指定的参数转换文件。
-ascii：转换ebcdic为ascii
-ebcdic：转换ascii为ebcdic
-ibm：转换ascii为alternate ebcdic
-block：把每一行转换为长度为cbs，不足部分用空格填充
-unblock：使每一行的长度都为cbs，不足部分用空格填充
-lcase：把大写字符转换为小写字符
-ucase：把小写字符转换为大写字符
-swap：交换输入的每对字节
-noerror：出错时不停止
-notrunc：不截短输出文件
-sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字符补齐。
---help：显示帮助信息
---version：显示版本信息
+	of=文件名：输出文件名，默认为标准输出。即指定目的文件。
+	ibs=bytes：一次读入bytes个字节，即指定一个块大小为bytes个字节。
+	obs=bytes：一次输出bytes个字节，即指定一个块大小为bytes个字节。
+	bs=bytes：同时设置读入/输出的块大小为bytes个字节。
+	cbs=bytes：一次转换bytes个字节，即指定转换缓冲区大小。
+	skip=blocks：从输入文件开头跳过blocks个块后再开始复制。
+	seek=blocks：从输出文件开头跳过blocks个块后再开始复制。
+	count=blocks：仅拷贝blocks个块，块大小等于ibs指定的字节数。
+	conv=<关键字>，关键字可以有以下11种：
+		conversion：用指定的参数转换文件。
+		ascii：转换ebcdic为ascii
+		ebcdic：转换ascii为ebcdic
+		ibm：转换ascii为alternate ebcdic
+		block：把每一行转换为长度为cbs，不足部分用空格填充
+		unblock：使每一行的长度都为cbs，不足部分用空格填充
+		lcase：把大写字符转换为小写字符
+		ucase：把小写字符转换为大写字符
+		swap：交换输入的每对字节
+		noerror：出错时不停止
+		notrunc：不截短输出文件
+		sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字符补齐。
+	--help：显示帮助信息
+	--version：显示版本信息
  - ps -ef | grep <进程名>：查看服务进程
  - date：显示当前时间
  - cal <月> <年>：显示当前日历
@@ -140,6 +140,7 @@ sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字�
 13. 服务管理
  - [service和systemctl](https://www.cnblogs.com/shijingjing07/p/9301590.html)
  - [systemctl](https://blog.csdn.net/liuchonghua/article/details/81743606)
+ - [systemd](https://wiki.archlinux.org/title/Systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
 14. 网络管理
  - ifconfig或ip:网络配置与状态，ifconfig 属于 net-tools 软件包，ip 属于 iproute2 软件包
  - 虽然这两个命令输出的格式不尽相同，但是输出的内容基本相同，比如都包含了 IP 地址、子网掩码、MAC 地址、网关地址、MTU 大小、网口的状态以及网路包收发的统计信息，下面就来说说这些信息，它们都与网络性能有一定的关系。
@@ -158,7 +159,7 @@ sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字�
  - carrier 表示发生 carrirer 错误的数据包数，比如双工模式不匹配、物理电缆出现问题等；
  - collisions 表示冲突、碰撞数据包数；
  - ifconfig 和 ip 命令只显示的是网口的配置以及收发数据包的统计信息，而看不到协议栈里的信息，那接下来就来看看如何查看协议栈里的信息。
-15. rpm与yum
+15. 包管理
  - rpm：rpm安装操作
  - rpm -q <应用>：查看某应用是否安装
  - rpm -qi <软件包名>：查看软件包信息
@@ -169,6 +170,7 @@ sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字�
  - yum：shell前端软件包管理器，可以自动处理依赖
  - yum list|grep <软件名>：查询yum服务器是否有该软件
  - yum install <软件名>：下载安装
+ - pacman：-Syu=对整个系统进行更新; -S 包名=安装包，多个包以空格分割；-Sy 包名=同步包数据后再安装； -Sv 包名=显示一些信息后安装；-U 本地包名=安装本地包，其扩展名为 pkg.tar.gz；-U url=安装远程包；-R 包名=删除包，但不删除依赖；-Rs 包名=删除包与不被其它包依赖的包；-Rsc 包名=删除包与其所有依赖的包；-Rd 包名=删除包，不检查其依赖； -Ss 关键字=在仓库中搜索含关键字的包；-Qs 关键字=搜索已安装的包；-Qi 包名=查看有关包的详尽信息；-Ql 包名=列出该包的文件；-Sw 包名=只下载包，不安装；-Sc=清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/；-Scc=清理所有的缓存文件。
 16. 网络命令
  - curl：访问指令。
  - curl -O <url>：下载该文件
@@ -209,7 +211,7 @@ sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字�
  - 首先删除默认的openJDK
  - 其次下载对应JDK安装包
  - 然后解压到/usr/local/lib对应文件夹下 
- - 最后修改/etc/profile文件，配置PATH，保存后source /etc/profile
+ - 最后修改/etc/profile文件，配置JAVA_HOME、PATH、CLASSPATH，保存后source /etc/profile
  - 使用java -version检查是否安装完成
 21. 调试工具
  - strace:跟踪一个命令的系统调用。strace -ff -o xxx.out <对应指令>，还可以-t输出对应时间戳。
@@ -232,9 +234,48 @@ sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字�
  - 重启服务：/etc/init.d/iptables restart
  - 查看端口是否开放：/sbin/iptables -L -n
 24. 挂载
- - mount：挂载设备到目录
+ - df：查看已挂载设备信息
+ - fdisk:创建和维护分区表的程序。-l=查看所有分区表；fdisk /dev/sdx=操作对应磁盘的分区
+ - 挂载信息：mount -l
+ - 挂载：mount /dev/sdxY /mnt/xxx
+ - 解除挂载：umount /dev/sdxY
  - mount -t ntfs-3g /dev/sdxY 目录 。挂载NTFS分区
- - /etc/fstab :自动挂载配置文件
+ - /etc/fstab :自动挂载配置文件。有如下字段：file system：要挂载的分区或存储设备；dir：挂载位置；type：文件系统类型，ntfs,ext4等；options：挂载时使用的参数，ro/rw/auto/relatime等；dump：何时dump它做备份，0表示忽略，1则进行备份；pass：文件系统的检查顺序，0不检查，1最高优先级如根目录，2其它被检查的设备。
+25. 扩大分区容量
+ - 1.使用fdisk
+ - 2.停下对应分区所有程序。systemctl stop xxx
+ - 3.解除对应磁盘挂载。umount -v 设备名/挂载点
+ - 4.如果无法解除挂载，关闭该分区的操作程序。fuser -m -v 挂载目录；fuser -m -v -i -k 挂载目录
+ - 5.先删除该分区，记下该分区的磁柱号。
+ - 6.再次创建该分区。（记得对比磁柱start位置需要相同，且end，Blocks大于之前的分区）
+ - 7.保存推出fdisk
+ - 8.检查分区信息：e2fsck -f /dev/sdxY
+ - 9.调整分区大小：resize2fs -p /dev/sdxY
+ - 10.重新挂载分区
+ - 11.查看分区大小：df -h
+26. 查看内核
+ - uname -a
+ - cat /proc/version
+ - dmesg | grep Linux
+27. 从U盘安装Linux系统
+ - 1.制作安装介质
+ - 2.准备安装的磁盘分区
+ - 3.设置启动顺序
+ - 4.进入U盘下的系统
+ - 5.检查引导方式。efi+gpt或bios+mbr
+ - 6.联网
+ - 7.更新系统时间
+ - 8.创建引导分区
+ - 9.创建根分区
+ - 10.挂载分区
+ - 11.安装基本包
+ - 12.设置fstab
+ - 12.chroot
+ - 13.设置时区
+ - 14.设置字符集
+ - 15.设置主机名
+ - 16.设置root密码
+ - 17.重启
 100. 其它
  - 数据恢复：可以使用testdisk[操作手册](https://www.cgsecurity.org/wiki/Testdisk_%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97)
  - 制作安装介质：使用dd。windows下可以使用usbwriter
