@@ -172,14 +172,11 @@
  - yum install <软件名>：下载安装
  - pacman：-Syu=对整个系统进行更新; -S 包名=安装包，多个包以空格分割；-Sy 包名=同步包数据后再安装； -Sv 包名=显示一些信息后安装；-U 本地包名=安装本地包，其扩展名为 pkg.tar.gz；-U url=安装远程包；-R 包名=删除包，但不删除依赖；-Rs 包名=删除包与不被其它包依赖的包；-Rsc 包名=删除包与其所有依赖的包；-Rd 包名=删除包，不检查其依赖； -Ss 关键字=在仓库中搜索含关键字的包；-Qs 关键字=搜索已安装的包；-Qi 包名=查看有关包的详尽信息；-Ql 包名=列出该包的文件；-Sw 包名=只下载包，不安装；-Sc=清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/；-Scc=清理所有的缓存文件。
 16. 网络命令
- - curl：访问指令。
- - curl -O <url>：下载该文件
- - curl -T <文件路径> -u <用户名>:<密码> ftp://<FTP地址>/<ftp路径>/ 上传文件
- - curl <url>：访问该地址，获得html
- - curl -o <文件名> <url> ：将html保存
+ - curl：<url>：访问该地址，获得html,-O <url>：下载该文件,-o <文件名> <url> ：将html保存,-T <文件路径> -u <用户名>:<密码> ftp://<FTP地址>/<ftp路径>/ 上传文件,-X 指定POST或GET，-b '' 指定请求报文体，-H 指定请求报文header，-v 打印请求和返回的请求
  - nc：nc -zvw3 ip port 查看tcp端口是否开启。 nc -l port ,监听某端口。 nc ip port 连接某ip的端口
  - netstat -anpl|grep port 查看端口占用
  - telnet
+ - arp:查看服务器地址解析 -a:查看全部 -d：删除缓存 -s：手动输入一个缓存
 17. linux状态查询
  - top：整机进程信息
  - netstat:套接字连接情况 -a 列出所有，-t TCP的连接，-u UDP的链接，-n 禁用域名解析，加快查询，-l，正在监听的套接字, -s 协议栈统计信息 。一般使用 netstat -lantp|grep 端口号，查询对应端口号的套接字
@@ -216,6 +213,8 @@
 21. 调试工具
  - strace:跟踪一个命令的系统调用。strace -ff -o xxx.out <对应指令>，还可以-t输出对应时间戳。
  - tcpdump:一个命令行下的抓包工具。-i 抓哪个网卡，-c 抓几个包，-X 将包中内容与协议头原原本本地显示 ，-nn 将域名显示为ip和端口号 ，-e 打印链路层的头信息，源mac与目的mac，-v或-vv输出更详尽的报文信息。 sudo tcpdump -i eth0 -e -nn -X -c 2 port 1111
+ - tcpdump -i eth0 dst/src host hostname and/or dst/src port ! portNum 监听eth0的目标/源头为hostname的，且/或端口不为portNum的信息 
+ - [tcpdump使用详解](https://www.cnblogs.com/lvdongjie/p/10911564.html)
 22. 使用tmux
  - tmux有会话（Session）、窗口（Window）、窗格（Pane）
  - tmux ls：查看当前存在的会话
