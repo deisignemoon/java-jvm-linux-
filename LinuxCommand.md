@@ -195,6 +195,9 @@
  - sar: -h 帮助；-d 磁盘；-b io;-r 内存；-u CPU；-n DEV 网卡（rxpck/s 和 txpck/s 分别是接收和发送的 PPS，单位为包 / 秒。rxkB/s 和 txkB/s 分别是接收和发送的吞吐率，单位是 KB/ 秒。rxcmp/s 和 txcmp/s 分别是接收和发送的压缩数据包数，单位是包 / 秒。）；查看机器状态
  - ethtool：ethtool eth0 | grep Speed 不过注意这里小写字母 b ，表示比特而不是字节。我们通常提到的千兆网卡、万兆网卡等，单位也都是比特（bit）
  - ping ：它是基于 ICMP 协议的，工作在网络层。 icmp_seq（ICMP 序列号）、TTL（生存时间，或者跳数）以及 time （往返延时），而且最后会汇总本次测试的情况，如果网络没有丢包，packet loss 的百分比就是 0。ping 不通服务器并不代表 HTTP 请求也不通，因为有的服务器的防火墙是会禁用 ICMP 协议的。
+ - blkid：查看块设备的文件系统类型，LABEL，UUID等信息
+ - lspci：列出所以链接PCI接口的外部设备。即显卡、网卡、声卡等等。
+ - demesg：显示内核环形缓冲区（kernel-ring-buffer）里面的内容。在进行系统引导时，内核会将有关硬件以及驱动谢谢写入这个缓冲区。usb，bluetooth等驱动信息，可以使用grep过滤查询
 18. 服务操作指令
  - service <服务名> <操作>：操作系统服务，在centos6以下可用，如：service iptables status 查看防火墙状态
  - systemctl <操作> <服务名>:操作系统服务，在centos7及以上可用，如：systemctl status firewalld.service
@@ -246,7 +249,7 @@
  - 2.停下对应分区所有程序。systemctl stop xxx
  - 3.解除对应磁盘挂载。umount -v 设备名/挂载点
  - 4.如果无法解除挂载，关闭该分区的操作程序。fuser -m -v 挂载目录；fuser -m -v -i -k 挂载目录
- - 5.先删除该分区，记下该分区的磁柱号。
+ - 5.先删除该分区，记下该分区的磁柱号(重要：会使数据发生丢失)。
  - 6.再次创建该分区。（记得对比磁柱start位置需要相同，且end，Blocks大于之前的分区）
  - 7.保存推出fdisk
  - 8.检查分区信息：e2fsck -f /dev/sdxY
