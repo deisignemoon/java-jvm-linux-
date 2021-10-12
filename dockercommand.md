@@ -64,3 +64,5 @@
  - VOLUME 设置数据卷 
  - CMD 容器运行后执行的命令，会被覆盖
  - ENTRYPOINT 容器运行后执行的命令，不会被覆盖
+ 9. 问题
+ - docker 权限问题：sudo chmod a+rw /var/run/docker.sock 运行这条命令就没问题了
