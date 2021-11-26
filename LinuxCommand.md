@@ -172,6 +172,7 @@
  - yum install <软件名>：下载安装
  - pacman 由于pacman数据库操作异常被锁定：rm -f /var/lib/pacman/db.lck
  - pacman：-Syu=对整个系统进行更新; -S 包名=安装包，多个包以空格分割；-Sy 包名=同步包数据后再安装； -Sv 包名=显示一些信息后安装；-U 本地包名=安装本地包，其扩展名为 pkg.tar.gz；-U url=安装远程包；-R 包名=删除包，但不删除依赖；-Rs 包名=删除包与不被其它包依赖的包；-Rsc 包名=删除包与其所有依赖的包；-Rd 包名=删除包，不检查其依赖； -Ss 关键字=在仓库中搜索含关键字的包；-Qs 关键字=搜索已安装的包；-Qi 包名=查看有关包的详尽信息；-Ql 包名=列出该包的文件；-Sw 包名=只下载包，不安装；-Sc=清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/；-Scc=清理所有的缓存文件。
+ - error:GPGME error:No data   -->  sudo rm -R /var/lib/pacman/sync
 16. 网络命令
  - curl：<url>：访问该地址，获得html,-O <url>：下载该文件,-o <文件名> <url> ：将html保存,-T <文件路径> -u <用户名>:<密码> ftp://<FTP地址>/<ftp路径>/ 上传文件,-X 指定POST或GET，-b '' 指定请求报文体，-H 指定请求报文header，-v 打印请求和返回的请求
  - nc：nc -zvw3 ip port 查看tcp端口是否开启。 nc -l port ,监听某端口。 nc ip port 连接某ip的端口
@@ -197,7 +198,7 @@
  - ping ：它是基于 ICMP 协议的，工作在网络层。 icmp_seq（ICMP 序列号）、TTL（生存时间，或者跳数）以及 time （往返延时），而且最后会汇总本次测试的情况，如果网络没有丢包，packet loss 的百分比就是 0。ping 不通服务器并不代表 HTTP 请求也不通，因为有的服务器的防火墙是会禁用 ICMP 协议的。
  - blkid：查看块设备的文件系统类型，LABEL，UUID等信息
  - lspci：列出所以链接PCI接口的外部设备。即显卡、网卡、声卡等等。
- - demesg：显示内核环形缓冲区（kernel-ring-buffer）里面的内容。在进行系统引导时，内核会将有关硬件以及驱动谢谢写入这个缓冲区。usb，bluetooth等驱动信息，可以使用grep过滤查询
+ - dmesg：显示内核环形缓冲区（kernel-ring-buffer）里面的内容。在进行系统引导时，内核会将有关硬件以及驱动谢谢写入这个缓冲区。usb，bluetooth等驱动信息，可以使用grep过滤查询
 18. 服务操作指令
  - service <服务名> <操作>：操作系统服务，在centos6以下可用，如：service iptables status 查看防火墙状态
  - systemctl <操作> <服务名>:操作系统服务，在centos7及以上可用，如：systemctl status firewalld.service
