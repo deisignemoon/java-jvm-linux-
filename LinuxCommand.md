@@ -199,6 +199,10 @@
  - blkid：查看块设备的文件系统类型，LABEL，UUID等信息
  - lspci：列出所以链接PCI接口的外部设备。即显卡、网卡、声卡等等。
  - dmesg：显示内核环形缓冲区（kernel-ring-buffer）里面的内容。在进行系统引导时，内核会将有关硬件以及驱动谢谢写入这个缓冲区。usb，bluetooth等驱动信息，可以使用grep过滤查询
+ - 查看CPU个数:cat /proc/cpuinfo | grep “physical id” | uniq | wc -l
+ - 查看CPU核数:cat /proc/cpuinfo | grep “cpu cores” | uniq
+ - 查看CPU型号:cat /proc/cpuinfo | grep ‘model name’ |uniq
+ - /proc:设备信息目录
 18. 服务操作指令
  - service <服务名> <操作>：操作系统服务，在centos6以下可用，如：service iptables status 查看防火墙状态
  - systemctl <操作> <服务名>:操作系统服务，在centos7及以上可用，如：systemctl status firewalld.service
