@@ -96,7 +96,9 @@
  - sync：将内存同步到磁盘，关机或重启前都应该同步一下，防止数据丢失
 4. 用户登录和注销
  - 尽量不要以root登陆，可以以一般用户登录，在su - <用户名>切换用户身份
- - logout：注销用户
+ - logout：注销用户，exit
+ - systemd-run:在临时 scope 或 service 单元中运行命令, 可以在ssh连接退出后保证对应用户创建的进程不被关闭：systemd-run --scope --user tmux [http://www.jinbuguo.com/systemd/systemd-run.html](systemd-run 中文手册)
+ - logind.conf:/etc/systemd/logind.conf 登录管理器 [http://www.jinbuguo.com/systemd/systemd-logind.service.html](systemd-logind.service 中文手册)
 5. 用户操作
  - useradd <选项> <用户名>：创建用户后会自动创建对应用户名的家目录
  - useradd -d <用户名>：指定家目录
