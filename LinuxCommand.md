@@ -85,6 +85,7 @@
  - :new fileName:横向新建窗格 :vsp fileName 水平新建窗格
  - 关闭文件: 命令模式下 q关闭光标所在文件，only关闭除光标所在文件 qa关闭所有文件
  - 窗口操作：Ctrl+w 进入窗格操作 hjkl(上下左右)，文件窗口中移动 +-<> 当前窗格大小改变一行 =所有窗格等宽高 |当前窗格宽度最大 _当前窗格高度最大
+ - set wrap/nowrap :是否自动折行
 3. 开关机操作
  - shoutdown -h now:立即关机
  - shutdown -h 1：一分钟后关机
