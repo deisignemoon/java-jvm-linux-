@@ -201,7 +201,7 @@
  - error:GPGME error:No data   -->  sudo rm -R /var/lib/pacman/sync
 16. 网络命令
  - curl：<url>：访问该地址，获得html,-O <url>：下载该文件,-o <文件名> <url> ：将html保存,-T <文件路径> -u <用户名>:<密码> ftp://<FTP地址>/<ftp路径>/ 上传文件,-X 指定POST或GET，-b '' 指定请求报文体，-H 指定请求报文header，-v 打印请求和返回的请求
- - nc/ncat：-l port:监听模式，监听某端口 nc -l port ; ip port:建立连接 ; -u:建立UDP连接(默认为TCP); -z:端口扫描 nc -z ip port-port; -v:输出信息; -e:执行命令 nc -l port -c /bin/bash; -w:设定超时事件;-k:强制保持连接;nc ip port nc -zvw3 ip port 查看tcp端口是否开启。
+ - nc/ncat：-l port:监听模式，监听某端口 nc -l port ; ip port:建立连接 ; -u:建立UDP连接(默认为TCP); -z:端口扫描 nc -z ip port-port; -v:输出信息; -e:执行命令 nc -l port -c /bin/bash; -w:设定超时时间;-k:强制保持连接;nc ip port nc -zvw3 ip port 查看tcp端口是否开启。
  - netstat -anpl|grep port 查看端口占用
  - telnet
  - arp:查看服务器地址解析 -a:查看全部 -d：删除缓存 -s：手动输入一个缓存
