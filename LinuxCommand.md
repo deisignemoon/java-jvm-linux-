@@ -317,4 +317,5 @@
 100. 其它
  - 数据恢复：可以使用testdisk[操作手册](https://www.cgsecurity.org/wiki/Testdisk_%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97)
  - 制作安装介质：使用dd。windows下可以使用usbwriter
+ - xhost: X服务器的访问控制程序。xhost +:关闭访问控制。 xhost -:启动访问控制。xhost + ip :将ip加入访问白名单中。 xhost - [ip]:将ip从访问白名单中删除 
 
