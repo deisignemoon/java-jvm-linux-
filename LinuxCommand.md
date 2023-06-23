@@ -138,7 +138,7 @@
  - whereis：whereis  [-bmsu]  档案或目录名
 9. 压缩命令
  - tar：-zxvf <压缩包> <解压目录> 解压，-zcvf <压缩包名> <要压缩的文件(们)> 压缩文件
- - zip/unzip：-r递归 ，-d解压缩后存放目录
+ - zip/unzip：-r递归 ，-d解压缩后存放目录，-s压缩分卷大小。解压前使用cat zipFile* > zipFile合并压缩包
 10. 文件管理
  - 查看文件所有者：ls -ahl
  - chown <用户名> <文件名>：修改文件所有者，或chown <用户名>:<用户组> <文件名>
