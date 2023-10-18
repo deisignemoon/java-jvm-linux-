@@ -32,6 +32,7 @@
  - docker logs -ft --tail <信息条数> <容器名或id>：查看容器日志
  - docker top <容器id>:查看容器内进程
  - docker inspect <容器id>：查看容器内部详细信息
+ - docker stat --no-stream <容器id>：查看容器的cpu、men、io信息。free -h 本质上是读取 /proc/meminfo 文件内容。stat读取的是容器内/sys/fs/cgroup/memory.stat
  - docker exec -it <容器id> /bin/bash:进入正在运行的容器，打开新的终端
  - docker attach <容器id>：进入正在运行的容器，不会打开新的终端
  - docker cp <容器id>:<容器内路径> <宿主机路径>:拷贝容器内文件到宿主机
