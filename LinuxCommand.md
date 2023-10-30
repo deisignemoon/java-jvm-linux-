@@ -229,6 +229,7 @@
  - 查看CPU个数:cat /proc/cpuinfo | grep “physical id” | uniq | wc -l
  - 查看CPU核数:cat /proc/cpuinfo | grep “cpu cores” | uniq
  - 查看CPU型号:cat /proc/cpuinfo | grep ‘model name’ |uniq
+ - firewalld-cmd: 查询端口是否开启：--query-port=端口/tcp ;添加指定需要开放的端口:--add-port=端口/tcp --permanent;重载入添加的端口:--reload;移除端口:--permanent --remove-port=端口/tcp;防火墙状态:--state;
  - /proc:设备信息目录
 18. 服务操作指令
  - service <服务名> <操作>：操作系统服务，在centos6以下可用，如：service iptables status 查看防火墙状态
