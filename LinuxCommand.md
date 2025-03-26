@@ -269,7 +269,7 @@
  - 窗格间移动：快捷键 方向键
  - 浮动窗口：tmux popup -w 80% -h 80% 生成一个窗格，ctrl+c关闭
  - exit：离开当前窗格，窗口，会话
- - 指令模式：快捷键+：  比如：set synchronize-panes 实现多窗格同步操作，再次输入恢复单窗格操作
+ - 指令模式：快捷键+：  比如：set synchronize-panes 实现多窗格同步操作，再次输入恢复单窗格操作 set -g mouse on 可以使鼠标滚轮操作窗格
 23. 端口配置
  - /etc/sysconfig/iptables 编辑文件
  - 重启服务：/etc/init.d/iptables restart
