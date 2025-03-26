@@ -36,6 +36,7 @@
  - docker exec -it <容器id> /bin/bash:进入正在运行的容器，打开新的终端
  - docker attach <容器id>：进入正在运行的容器，不会打开新的终端
  - docker cp <容器id>:<容器内路径> <宿主机路径>:拷贝容器内文件到宿主机
+ - docker cp 主机路径 容器名称或ID:容器内路径
  - ![](download.png)
 6. docker镜像
  - docker镜像都是只读的，启动后会生成可写的容器层，之下都是只读的镜像层
