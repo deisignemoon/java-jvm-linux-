@@ -270,7 +270,7 @@
  - 浮动窗口：tmux popup -w 80% -h 80% 生成一个窗格，ctrl+c关闭
  - exit：离开当前窗格，窗口，会话
  - 指令模式：快捷键+：  比如：set synchronize-panes 实现多窗格同步操作，再次输入恢复单窗格操作 set -g mouse on 可以使鼠标滚轮操作窗格
- - systemd在ssh断开后关闭tmux：可使用指令  systemd-run --scope --user tmux 启动tmux
+ - systemd在ssh断开后关闭tmux：systemd将其默认设置更改为killuserprocess=yes，因此在离开ssh会话后，由它创建的每个进程都将被终止。可使用指令  systemd-run --scope --user tmux 启动tmux
 23. 端口配置
  - /etc/sysconfig/iptables 编辑文件
  - 重启服务：/etc/init.d/iptables restart
