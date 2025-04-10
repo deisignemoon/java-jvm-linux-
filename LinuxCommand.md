@@ -68,6 +68,7 @@
  - 清空文件内容：将空数据覆盖到文件，如: >  xxx.txt或echo "" >xxx.txt 或 : > xxx.txt 或 cat /dev/null > xxx.txt 
  - 批量替换：命令模式下，%s/目标位单词/替换后单词/g,或者%s#目标位单词#替换后单词#g
  - :noh 关闭查找关键词高亮
+ - :set hlsearch 高亮查询
  - /word：向光标之后寻找第一个值为word的字符串
  - ?word：向光标之前寻找第一个值为word的字符串
  - n：重复上一个查找操作
