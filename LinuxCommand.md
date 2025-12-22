@@ -325,3 +325,6 @@
  - 制作安装介质：使用dd。windows下可以使用usbwriter
  - xhost: X服务器的访问控制程序。xhost +:关闭访问控制。 xhost -:启动访问控制。xhost + ip :将ip加入访问白名单中。 xhost - [ip]:将ip从访问白名单中删除 
 
+101. redis
+./redis-cli -a 密码 -n 数据库id -p 6379 --scan --pattern "前缀*" | xargs -L 5000 ./redis-cli -a 密码 -n 数据库id -p 6379 DEL
+
