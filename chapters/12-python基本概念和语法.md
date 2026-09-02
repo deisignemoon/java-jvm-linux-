@@ -684,3 +684,114 @@ class FileManager:
 with FileManager("test.txt", "w") as f:
     f.write("Hello")
 ```
+
+### 10.6 默认参数陷阱
+```python
+# 错误示例：可变对象作为默认参数
+def add_item(item, lst=[]):
+    lst.append(item)
+    return lst
+
+print(add_item(1))  # [1]
+print(add_item(2))  # [1, 2]，不是[2]！
+
+# 正确做法：使用None作为默认值
+def add_item_safe(item, lst=None):
+    if lst is None:
+        lst = []
+    lst.append(item)
+    return lst
+```
+
+### 10.7 闭包与变量绑定
+```python
+# 闭包中的变量绑定问题
+def make_funcs():
+    funcs = []
+    for i in range(5):
+        funcs.append(lambda: i)  # 所有lambda共享同一个i
+    return funcs
+
+funcs = make_funcs()
+print([f() for f in funcs])  # [4, 4, 4, 4, 4]，不是[0,1,2,3,4]
+
+# 解决方案：使用默认参数绑定
+def make_funcs_fixed():
+    funcs = []
+    for i in range(5):
+        funcs.append(lambda i=i: i)  # 用默认参数绑定当前值
+    return funcs
+```
+
+### 10.8 递归与尾递归
+```python
+# 递归实现阶乘
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+# 递归实现斐波那契
+def fib(n):
+    if n <= 1:
+        return n
+    return fib(n-1) + fib(n-2)
+
+# Python没有尾递归优化，递归深度有限
+import sys
+sys.setrecursionlimit(1000)  # 设置递归深度限制
+```
+
+### 10.9 函数作为参数
+```python
+# 函数作为参数传递
+def apply(func, value):
+    return func(value)
+
+result = apply(lambda x: x * 2, 5)  # 10
+
+# 常见用法：回调函数
+def process_data(data, callback):
+    processed = [callback(item) for item in data]
+    return processed
+
+numbers = [1, 2, 3]
+doubled = process_data(numbers, lambda x: x * 2)
+```
+
+### 10.10 高阶函数
+```python
+from functools import reduce
+
+# map：映射
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+
+# filter：过滤
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+
+# reduce：累积
+product = reduce(lambda a, b: a * b, numbers)  # 120
+
+# sorted：排序
+students = [("张三", 85), ("李四", 92), ("王五", 78)]
+by_score = sorted(students, key=lambda s: s[1], reverse=True)
+```
+
+### 10.11 函数缓存
+```python
+from functools import lru_cache
+
+# 使用lru_cache缓存计算结果
+@lru_cache(maxsize=128)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# 第一次调用会计算，后续调用直接返回缓存
+print(fibonacci(100))  # 快速返回大数
+
+# 查看缓存信息
+print(fibonacci.cache_info())
+```
