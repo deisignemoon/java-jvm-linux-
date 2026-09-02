@@ -348,6 +348,21 @@ reversed([1,2,3])  # 反转迭代器
 enumerate(["a","b"])  # 带索引遍历：[(0,'a'),(1,'b')]
 zip([1,2],["a","b"])  # 并行遍历：[(1,'a'),(2,'b')]
 
+# 列表方法
+lst = [1, 2, 3]
+lst.append(4)        # 末尾添加单个元素：[1, 2, 3, 4]
+lst.extend([5, 6])   # 末尾扩展多个元素：[1, 2, 3, 4, 5, 6]
+lst.insert(0, 0)     # 指定位置插入：[0, 1, 2, 3, 4, 5, 6]
+lst.remove(3)        # 删除第一个指定值
+lst.pop()            # 弹出末尾元素
+lst.pop(0)           # 弹出指定位置元素
+lst.clear()          # 清空列表
+lst.count(1)         # 统计出现次数
+lst.index(2)         # 查找第一个索引
+lst.sort()           # 原地排序
+lst.reverse()        # 原地反转
+lst.copy()           # 浅拷贝
+
 # 迭代器函数
 map(lambda x: x*2, [1,2,3])  # 映射：[2,4,6]
 filter(lambda x: x>1, [1,2,3])  # 过滤：[2,3]
@@ -361,6 +376,23 @@ getattr(obj, 'name')  # 获取属性
 setattr(obj, 'name', 'value')  # 设置属性
 dir([])         # 列出所有方法
 id(obj)         # 对象唯一标识
+object()        # 所有类的基类
+
+# object基类常用方法
+class MyClass(object):
+    def __init__(self, value):
+        self.value = value
+    
+    def __repr__(self):
+        return f"MyClass({self.value})"
+    
+    def __eq__(self, other):
+        return isinstance(other, MyClass) and self.value == other.value
+
+obj = MyClass(42)
+print(repr(obj))    # 调用__repr__
+print(hash(obj))    # 获取哈希值
+print(obj.__class__)  # 获取类信息
 
 # 输入输出
 print("Hello", end="")  # 打印（不换行）
