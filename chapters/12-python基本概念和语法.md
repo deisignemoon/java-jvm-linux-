@@ -32,7 +32,7 @@ if __name__ == "__main__":
 | 整数 | int | 100, -50, 0 |
 | 浮点数 | float | 3.14, -2.5, 1e10 |
 | 字符串 | str | "hello", 'world' |
-| 布尔值 | bool | True, False |
+| 布尔值 | bool | True==1, False==0 |
 | 空值 | NoneType | None |
 
 ### 2.2 变量
@@ -513,7 +513,32 @@ open("nonexistent.txt")
 "hello".push("!")
 ```
 
-### 7.3 自定义异常
+### 7.3 raise 语句
+```python
+# 基本用法：主动抛出异常
+raise ValueError("值无效")
+
+# 重新抛出当前异常
+try:
+    1 / 0
+except ZeroDivisionError:
+    print("捕获到异常，重新抛出")
+    raise
+
+# raise from 语法：异常链
+try:
+    int("abc")
+except ValueError as e:
+    raise RuntimeError("转换失败") from e
+
+# 实际应用场景
+def set_age(age):
+    if age < 0 or age > 150:
+        raise ValueError(f"年龄必须在0-150之间，当前值: {age}")
+    return age
+```
+
+### 7.4 自定义异常
 ```python
 class CustomError(Exception):
     def __init__(self, message):
